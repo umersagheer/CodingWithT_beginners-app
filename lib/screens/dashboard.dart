@@ -11,7 +11,7 @@ class Dashboard extends StatelessWidget {
           'Flutter App'.toUpperCase(),
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.teal,
       ),
       body: const Center(
         child: Text.rich(
@@ -22,9 +22,9 @@ class Dashboard extends StatelessWidget {
               TextSpan(
                 text: 'Flutter',
                 style: TextStyle(
-                    fontSize: 30,
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold),
+                  fontSize: 30,
+                  color: Colors.blue,
+                ),
               ),
               TextSpan(
                 text: 'App',
