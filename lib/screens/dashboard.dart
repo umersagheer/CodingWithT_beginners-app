@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatelessWidget {
@@ -15,14 +13,28 @@ class Dashboard extends StatelessWidget {
         ),
         backgroundColor: Colors.teal,
       ),
-      body: Center(
-        child: Text("Random value is ${getNumber()}"),
+      body: const Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        verticalDirection: VerticalDirection.down,
+        children: [
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Image(
+              image: AssetImage('umer.jpg'),
+              width: 300,
+              height: 200,
+              fit: BoxFit.contain,
+            ),
+          ),
+          Image(
+            image: NetworkImage(
+                'https://www.mooc.org/hs-fs/hubfs/learn-programming-career-jpg.jpeg?width=500&name=learn-programming-career-jpg.jpeg'),
+            width: 200,
+            height: 200,
+            fit: BoxFit.cover,
+          ),
+        ],
       ),
     );
   }
-}
-
-int getNumber() {
-  Random random = Random();
-  return random.nextInt(10);
 }
