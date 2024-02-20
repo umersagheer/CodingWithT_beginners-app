@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatelessWidget {
@@ -13,27 +15,14 @@ class Dashboard extends StatelessWidget {
         ),
         backgroundColor: Colors.teal,
       ),
-      body: const Center(
-        child: Text.rich(
-          TextSpan(
-            text: "My",
-            style: TextStyle(fontWeight: FontWeight.bold),
-            children: [
-              TextSpan(
-                text: 'Flutter',
-                style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.blue,
-                ),
-              ),
-              TextSpan(
-                text: 'App',
-                style: TextStyle(fontSize: 30),
-              ),
-            ],
-          ),
-        ),
+      body: Center(
+        child: Text("Random value is ${getNumber()}"),
       ),
     );
   }
+}
+
+int getNumber() {
+  Random random = Random();
+  return random.nextInt(10);
 }
