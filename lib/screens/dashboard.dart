@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-// ignore: depend_on_referenced_packages
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
@@ -16,13 +14,24 @@ class Dashboard extends StatelessWidget {
         ),
         backgroundColor: Colors.blue,
       ),
-      body: Center(
-        child: IconButton(
-          icon: const FaIcon(FontAwesomeIcons.react),
-          iconSize: 100,
-          color: Colors.blueGrey,
-          onPressed: () {},
-          highlightColor: Colors.blue.withOpacity(0.1),
+      body: Container(
+        width: 200.0,
+        height: 200.0,
+        padding: const EdgeInsets.all(20),
+        margin: const EdgeInsets.symmetric(horizontal: 120, vertical: 30),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: Colors.blueAccent.withOpacity(0.5),
+          borderRadius: const BorderRadius.all(Radius.circular(150.0)),
+          // border: Border.all(color: Colors.blue, width: 4.0),
+          image: const DecorationImage(image: AssetImage('umer.jpg')),
+          boxShadow: [
+            BoxShadow(
+                color: Colors.blue.shade300,
+                blurRadius: 5,
+                spreadRadius: 1,
+                offset: const Offset(1, 5)),
+          ],
         ),
       ),
     );
