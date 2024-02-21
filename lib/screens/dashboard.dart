@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
@@ -6,34 +8,22 @@ class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.lightBlue.shade100,
       appBar: AppBar(
         title: Text(
           'Flutter App'.toUpperCase(),
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.blue,
       ),
-      body: const Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        verticalDirection: VerticalDirection.down,
-        children: [
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Image(
-              image: AssetImage('umer.jpg'),
-              width: 300,
-              height: 200,
-              fit: BoxFit.contain,
-            ),
-          ),
-          Image(
-            image: NetworkImage(
-                'https://www.mooc.org/hs-fs/hubfs/learn-programming-career-jpg.jpeg?width=500&name=learn-programming-career-jpg.jpeg'),
-            width: 200,
-            height: 200,
-            fit: BoxFit.cover,
-          ),
-        ],
+      body: Center(
+        child: IconButton(
+          icon: const FaIcon(FontAwesomeIcons.react),
+          iconSize: 100,
+          color: Colors.blueGrey,
+          onPressed: () {},
+          highlightColor: Colors.blue.withOpacity(0.1),
+        ),
       ),
     );
   }
