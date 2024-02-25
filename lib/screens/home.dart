@@ -6,36 +6,36 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        // child: OutlinedButton
-        // child: TextButton
-        child: ElevatedButton(
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-            foregroundColor: Colors.white,
-            backgroundColor: Colors.blue,
-            elevation: 10,
-            shadowColor: Colors.blue,
-            side: BorderSide(
-              color: Colors.blue.shade900,
-              width: 2,
-            ),
-            alignment: Alignment.center,
-            padding: const EdgeInsets.all(10.0),
-            fixedSize: const Size(230, 50),
-            textStyle: const TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          child: const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text("Continue   "), Icon(Icons.fork_right)],
-          ),
-          // label: const Text("Continue Button"),
-          // icon: const Icon(Icons.plus_one),
+      appBar: AppBar(
+        backgroundColor: Colors.lightBlue,
+        leading: IconButton(icon: const Icon(Icons.menu), onPressed: () {}),
+        title: const Text("Home"),
+        actions: [
+          IconButton(icon: const Icon(Icons.search), onPressed: () {}),
+          IconButton(icon: const Icon(Icons.shopping_cart), onPressed: () {}),
+        ],
+        elevation: 10.0,
+        shadowColor: Colors.blue,
+        titleSpacing: 10.0,
+        centerTitle: true,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(12.0)),
         ),
       ),
+      body: const Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Appbar",
+            style: TextStyle(fontSize: 22),
+          ),
+          Text(
+            "Coding with Umer",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          )
+        ],
+      )),
     );
   }
 }
