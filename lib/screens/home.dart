@@ -9,33 +9,93 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.lightBlue,
         leading: IconButton(icon: const Icon(Icons.menu), onPressed: () {}),
-        title: const Text("Home"),
+        title: const Text("Rows and Columns"),
         actions: [
           IconButton(icon: const Icon(Icons.search), onPressed: () {}),
           IconButton(icon: const Icon(Icons.shopping_cart), onPressed: () {}),
         ],
-        elevation: 10.0,
+        elevation: 5.0,
         shadowColor: Colors.blue,
-        titleSpacing: 10.0,
         centerTitle: true,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(12.0)),
         ),
       ),
-      body: const Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            "Appbar",
-            style: TextStyle(fontSize: 22),
-          ),
-          Text(
-            "Coding with Umer",
-            style: TextStyle(fontWeight: FontWeight.bold),
-          )
-        ],
-      )),
+      body: Container(
+        // color: Colors.blueAccent,
+        // height: 400,
+        child: const Column(
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Image(
+                    image: AssetImage("umer.jpg"),
+                    width: 170,
+                  ),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Image(
+                    image: AssetImage("umer.jpg"),
+                    width: 170,
+                  ),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Image(
+                    image: AssetImage("umer.jpg"),
+                    width: 170,
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.all(15.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.star),
+                  Icon(Icons.star),
+                  Icon(Icons.star),
+                  Icon(Icons.star),
+                  Icon(Icons.star_border),
+                ],
+              ),
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+              Column(
+                children: [
+                  Icon(
+                    Icons.phone,
+                    size: 35.0,
+                  ),
+                  Text("Call")
+                ],
+              ),
+              Column(
+                children: [
+                  Icon(
+                    Icons.alt_route,
+                    size: 35.0,
+                  ),
+                  Text("Route")
+                ],
+              ),
+              Column(
+                children: [
+                  Icon(
+                    Icons.travel_explore,
+                    size: 35.0,
+                  ),
+                  Text("Explore")
+                ],
+              ),
+            ]),
+          ],
+        ),
+      ),
     );
   }
 }
