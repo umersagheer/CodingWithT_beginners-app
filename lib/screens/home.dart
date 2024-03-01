@@ -1,7 +1,15 @@
 import "package:flutter/material.dart";
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+  Home({super.key});
+
+  List<String> products = ['Bed', 'Sofa', "Chair"];
+  List<String> productDetails = [
+    'King Size Bed',
+    'King Size Sofa',
+    "Wooden Chair"
+  ];
+  List<int> price = [30000, 22222, 4000];
 
   @override
   Widget build(BuildContext context) {
@@ -21,43 +29,17 @@ class Home extends StatelessWidget {
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(3.0)),
         ),
       ),
-      body: ListView(
-        itemExtent: 70.0,
-        children: [
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Colors.blue.shade400,
-              child: const Icon(Icons.alarm_on_sharp),
-            ),
-            title: const Text('Sales'),
-            subtitle: const Text('Sales of the week'),
-            trailing: const Text('3500'),
-            onTap: () {},
-            tileColor: Colors.blue.shade50,
-          ),
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Colors.blue.shade400,
-              child: const Icon(Icons.supervised_user_circle),
-            ),
-            title: const Text('Customers'),
-            subtitle: const Text('Customers of the week'),
-            trailing: const Text('1500'),
-            onTap: () {},
-            tileColor: Colors.blue.shade50,
-          ),
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Colors.blue.shade400,
-              child: const Icon(Icons.add_chart_rounded),
-            ),
-            title: const Text('Profit'),
-            subtitle: const Text('Profit of the week'),
-            trailing: const Text('300'),
-            onTap: () {},
-            tileColor: Colors.blue.shade50,
-          ),
-        ],
+      body: ListView.builder(
+        itemExtent: 80.0,
+        itemCount: products.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            leading: CircleAvatar(child: Text(products[index][0])),
+            title: Text(products[index]),
+            subtitle: Text(productDetails[index]),
+            trailing: Text(price[index].toString()),
+          );
+        },
       ),
     );
   }
