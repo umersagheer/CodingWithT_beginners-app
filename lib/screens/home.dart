@@ -9,7 +9,7 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.lightBlue,
         leading: IconButton(icon: const Icon(Icons.menu), onPressed: () {}),
-        title: const Text("Rows and Columns"),
+        title: const Text("Listview and builder Listview"),
         actions: [
           IconButton(icon: const Icon(Icons.search), onPressed: () {}),
           IconButton(icon: const Icon(Icons.shopping_cart), onPressed: () {}),
@@ -18,83 +18,46 @@ class Home extends StatelessWidget {
         shadowColor: Colors.blue,
         centerTitle: true,
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(12.0)),
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(3.0)),
         ),
       ),
-      body: Container(
-        // color: Colors.blueAccent,
-        // height: 400,
-        child: const Column(
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Image(
-                    image: AssetImage("umer.jpg"),
-                    width: 170,
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Image(
-                    image: AssetImage("umer.jpg"),
-                    width: 170,
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Image(
-                    image: AssetImage("umer.jpg"),
-                    width: 170,
-                  ),
-                ),
-              ],
+      body: ListView(
+        itemExtent: 70.0,
+        children: [
+          ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Colors.blue.shade400,
+              child: const Icon(Icons.alarm_on_sharp),
             ),
-            Padding(
-              padding: EdgeInsets.all(15.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.star),
-                  Icon(Icons.star),
-                  Icon(Icons.star),
-                  Icon(Icons.star),
-                  Icon(Icons.star_border),
-                ],
-              ),
+            title: const Text('Sales'),
+            subtitle: const Text('Sales of the week'),
+            trailing: const Text('3500'),
+            onTap: () {},
+            tileColor: Colors.blue.shade50,
+          ),
+          ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Colors.blue.shade400,
+              child: const Icon(Icons.supervised_user_circle),
             ),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-              Column(
-                children: [
-                  Icon(
-                    Icons.phone,
-                    size: 35.0,
-                  ),
-                  Text("Call")
-                ],
-              ),
-              Column(
-                children: [
-                  Icon(
-                    Icons.alt_route,
-                    size: 35.0,
-                  ),
-                  Text("Route")
-                ],
-              ),
-              Column(
-                children: [
-                  Icon(
-                    Icons.travel_explore,
-                    size: 35.0,
-                  ),
-                  Text("Explore")
-                ],
-              ),
-            ]),
-          ],
-        ),
+            title: const Text('Customers'),
+            subtitle: const Text('Customers of the week'),
+            trailing: const Text('1500'),
+            onTap: () {},
+            tileColor: Colors.blue.shade50,
+          ),
+          ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Colors.blue.shade400,
+              child: const Icon(Icons.add_chart_rounded),
+            ),
+            title: const Text('Profit'),
+            subtitle: const Text('Profit of the week'),
+            trailing: const Text('300'),
+            onTap: () {},
+            tileColor: Colors.blue.shade50,
+          ),
+        ],
       ),
     );
   }
