@@ -16,8 +16,7 @@ class Home extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightBlue,
-        leading: IconButton(icon: const Icon(Icons.menu), onPressed: () {}),
-        title: const Text("Listview and builder Listview"),
+        title: const Text("Navigation Drawer"),
         actions: [
           IconButton(icon: const Icon(Icons.search), onPressed: () {}),
           IconButton(icon: const Icon(Icons.shopping_cart), onPressed: () {}),
@@ -27,6 +26,42 @@ class Home extends StatelessWidget {
         centerTitle: true,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(3.0)),
+        ),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            const UserAccountsDrawerHeader(
+              accountEmail: Text("test@gmail.com"),
+              accountName: Text('Test'),
+              currentAccountPicture: CircleAvatar(
+                foregroundImage: AssetImage('/umer.jpg'),
+              ),
+              otherAccountsPictures: [
+                CircleAvatar(
+                  foregroundImage: AssetImage('/umer.jpg'),
+                ),
+                CircleAvatar(
+                  foregroundImage: AssetImage('/umer.jpg'),
+                ),
+              ],
+            ),
+            ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text("Home"),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.shopping_cart),
+              title: const Text("Shop"),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.favorite),
+              title: const Text("favourites"),
+              onTap: () {},
+            ),
+          ],
         ),
       ),
       body: ListView.builder(
