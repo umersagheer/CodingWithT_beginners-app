@@ -1,74 +1,75 @@
 import "package:flutter/material.dart";
 
 class Home extends StatelessWidget {
-  Home({super.key});
-
-  List<String> products = ['Bed', 'Sofa', "Chair"];
-  List<String> productDetails = [
-    'King Size Bed',
-    'King Size Sofa',
-    "Wooden Chair"
-  ];
-  List<int> price = [30000, 22222, 4000];
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Colors.amber,
-        foregroundColor: Colors.white,
-        // elevation: 10.0,
-        shape: const CircleBorder(),
-        child: const Icon(Icons.add),
+      appBar: AppBar(
+        title: const Text("Stack"),
+        backgroundColor: Colors.blue,
+        centerTitle: true,
       ),
-      bottomNavigationBar: const BottomAppBar(
-        notchMargin: 10.0,
-        shape: CircularNotchedRectangle(),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Padding(
-              padding: EdgeInsets.all(4.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.home),
-                  Text("Home"),
-                ],
+      body: Center(
+        child: Container(
+          padding: const EdgeInsets.all(8),
+          constraints: const BoxConstraints.expand(
+            height: 300,
+            width: 300,
+          ),
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade200,
+                offset: const Offset(0, 10),
+                spreadRadius: 3.0,
+                blurRadius: 4.0,
+              )
+            ],
+            image: const DecorationImage(
+                image: AssetImage('umer.jpg'), fit: BoxFit.cover),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: const Stack(
+            children: [
+              Text(
+                "Product card",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(4.0),
-              child: Column(
-                children: [
-                  Icon(Icons.image),
-                  Text("Gallery"),
-                ],
+              Positioned(
+                top: 25,
+                child: Text(
+                  "Learn Flutter",
+                  style: TextStyle(color: Colors.white, fontSize: 10),
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(4.0),
-              child: Column(
-                children: [
-                  Icon(Icons.favorite),
-                  Text("Likes"),
-                ],
+              Positioned(
+                bottom: 5,
+                right: 0,
+                child: Text(
+                  "Ramadan Mubarak",
+                  style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.white,
+                  ),
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(4.0),
-              child: Column(
-                children: [
-                  Icon(Icons.person),
-                  Text("Profile"),
-                ],
+              Positioned(
+                bottom: 45,
+                child: Text(
+                  "Codig with tea",
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: Colors.white,
+                  ),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
