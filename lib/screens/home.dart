@@ -14,67 +14,62 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.lightBlue,
-        title: const Text("Navigation Drawer"),
-        actions: [
-          IconButton(icon: const Icon(Icons.search), onPressed: () {}),
-          IconButton(icon: const Icon(Icons.shopping_cart), onPressed: () {}),
-        ],
-        elevation: 5.0,
-        shadowColor: Colors.blue,
-        centerTitle: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(3.0)),
-        ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.amber,
+        foregroundColor: Colors.white,
+        // elevation: 10.0,
+        shape: const CircleBorder(),
+        child: const Icon(Icons.add),
       ),
-      drawer: Drawer(
-        child: ListView(
+      bottomNavigationBar: const BottomAppBar(
+        notchMargin: 10.0,
+        shape: CircularNotchedRectangle(),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
           children: [
-            const UserAccountsDrawerHeader(
-              accountEmail: Text("test@gmail.com"),
-              accountName: Text('Test'),
-              currentAccountPicture: CircleAvatar(
-                foregroundImage: AssetImage('/umer.jpg'),
+            Padding(
+              padding: EdgeInsets.all(4.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.home),
+                  Text("Home"),
+                ],
               ),
-              otherAccountsPictures: [
-                CircleAvatar(
-                  foregroundImage: AssetImage('/umer.jpg'),
-                ),
-                CircleAvatar(
-                  foregroundImage: AssetImage('/umer.jpg'),
-                ),
-              ],
             ),
-            ListTile(
-              leading: const Icon(Icons.home),
-              title: const Text("Home"),
-              onTap: () {},
+            Padding(
+              padding: EdgeInsets.all(4.0),
+              child: Column(
+                children: [
+                  Icon(Icons.image),
+                  Text("Gallery"),
+                ],
+              ),
             ),
-            ListTile(
-              leading: const Icon(Icons.shopping_cart),
-              title: const Text("Shop"),
-              onTap: () {},
+            Padding(
+              padding: EdgeInsets.all(4.0),
+              child: Column(
+                children: [
+                  Icon(Icons.favorite),
+                  Text("Likes"),
+                ],
+              ),
             ),
-            ListTile(
-              leading: const Icon(Icons.favorite),
-              title: const Text("favourites"),
-              onTap: () {},
+            Padding(
+              padding: EdgeInsets.all(4.0),
+              child: Column(
+                children: [
+                  Icon(Icons.person),
+                  Text("Profile"),
+                ],
+              ),
             ),
           ],
         ),
-      ),
-      body: ListView.builder(
-        itemExtent: 80.0,
-        itemCount: products.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            leading: CircleAvatar(child: Text(products[index][0])),
-            title: Text(products[index]),
-            subtitle: Text(productDetails[index]),
-            trailing: Text(price[index].toString()),
-          );
-        },
       ),
     );
   }
