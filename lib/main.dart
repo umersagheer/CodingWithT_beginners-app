@@ -9,10 +9,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter App',
-        themeMode: ThemeMode.system,
-        home: FormScreen());
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter App',
+      themeMode: ThemeMode.system,
+      home: FormScreen(),
+    );
   }
 }
 
@@ -34,8 +35,9 @@ class _SFWidgetState extends State<SFWidget> {
           padding: const EdgeInsets.all(8.0),
           child: ListTile(
             shape: BeveledRectangleBorder(
-                borderRadius: BorderRadius.circular(3.0),
-                side: const BorderSide(color: Colors.blue, width: 1.0)),
+              borderRadius: BorderRadius.circular(3.0),
+              side: const BorderSide(color: Colors.blue, width: 1.0),
+            ),
             title: const Text("Addidas"),
             trailing: IconButton(
               icon: liked
