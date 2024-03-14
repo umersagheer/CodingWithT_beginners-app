@@ -1,4 +1,5 @@
 import 'package:beginner_app/screens/details.dart';
+import 'package:beginner_app/widgets/my_radio_button.dart';
 import 'package:flutter/material.dart';
 
 class FormScreen extends StatefulWidget {
@@ -13,6 +14,8 @@ class _FormScreenState extends State<FormScreen> {
   final _productDesController = TextEditingController();
   bool? _checkboxList = false;
 
+  ProductTypeEnum? _productTypeEnum;
+
   @override
   void dispose() {
     super.dispose();
@@ -23,8 +26,11 @@ class _FormScreenState extends State<FormScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Form'),
-        backgroundColor: Colors.blue,
+        title: Text(
+          'Form',
+          style: TextStyle(color: Colors.deepPurple.shade900),
+        ),
+        backgroundColor: Colors.deepPurple.shade200,
         centerTitle: true,
       ),
       body: Container(
@@ -37,9 +43,7 @@ class _FormScreenState extends State<FormScreen> {
             ),
             const Text(
               "Product Description",
-              style: TextStyle(
-                fontSize: 15,
-              ),
+              style: TextStyle(fontSize: 15),
             ),
             const SizedBox(height: 10),
             ProductField(
@@ -56,27 +60,49 @@ class _FormScreenState extends State<FormScreen> {
               iconColor: Colors.black,
             ),
             const SizedBox(height: 20),
-            // Checkbox(
-            //     checkColor: Colors.white,
-            //     tristate: true,
-            //     value: _checkbox,
-            //     onChanged: (val) {
-            //       setState(() {
-            //         _checkbox = val;
-            //       });
-            //     }),
             CheckboxListTile(
+              contentPadding: const EdgeInsets.all(0.0),
               title: const Text("Top Product"),
               value: _checkboxList,
-              controlAffinity: ListTileControlAffinity.leading,
-              onChanged: (val) {
+              tileColor: Colors.deepPurple.shade50,
+              shape: BeveledRectangleBorder(
+                borderRadius: BorderRadius.circular(4.0),
+              ),
+              onChanged: (bool? val) {
                 setState(() {
                   _checkboxList = val;
                 });
               },
+              controlAffinity: ListTileControlAffinity.leading,
             ),
             const SizedBox(height: 20),
-            submitButton(context)
+            Row(
+              children: [
+                MyRadioButton(
+                  selectedProductType: _productTypeEnum,
+                  onChanged: (ProductTypeEnum? val) {
+                    setState(() {
+                      _productTypeEnum = val;
+                    });
+                  },
+                  title: ProductTypeEnum.Downloadable.name,
+                  value: ProductTypeEnum.Downloadable,
+                ),
+                const SizedBox(width: 20),
+                MyRadioButton(
+                  selectedProductType: _productTypeEnum,
+                  onChanged: (ProductTypeEnum? val) {
+                    setState(() {
+                      _productTypeEnum = val;
+                    });
+                  },
+                  title: ProductTypeEnum.Deliverable.name,
+                  value: ProductTypeEnum.Deliverable,
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            submitButton(context),
           ],
         ),
       ),
