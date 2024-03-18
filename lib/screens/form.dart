@@ -10,12 +10,18 @@ class FormScreen extends StatefulWidget {
 }
 
 class _FormScreenState extends State<FormScreen> {
+  _FormScreenState() {
+    _selectedProductSize = _productSizesList[0];
+  }
+
   final _productController = TextEditingController();
   final _productDesController = TextEditingController();
   bool? _checkboxList = false;
 
   ProductTypeEnum? _productTypeEnum;
 
+  final _productSizesList = ["Small", "Medium", "Large", "Extra Large"];
+  String? _selectedProductSize = "";
   @override
   void dispose() {
     super.dispose();
@@ -100,6 +106,34 @@ class _FormScreenState extends State<FormScreen> {
                   value: ProductTypeEnum.Deliverable,
                 ),
               ],
+            ),
+            const SizedBox(height: 20),
+            DropdownButtonFormField(
+              value: _selectedProductSize,
+              icon: const Icon(
+                Icons.arrow_drop_down_circle,
+                color: Colors.deepPurple,
+              ),
+              dropdownColor: Colors.deepPurple.shade50,
+              decoration: const InputDecoration(
+                labelText: "Product Sizes",
+                prefixIcon: Icon(Icons.accessibility_new_rounded,
+                    color: Colors.deepPurple),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.deepPurple),
+                ),
+              ),
+              items: _productSizesList
+                  .map((size) => DropdownMenuItem(
+                        value: size,
+                        child: Text(size),
+                      ))
+                  .toList(),
+              onChanged: (val) {
+                setState(() {
+                  _selectedProductSize = val as String;
+                });
+              },
             ),
             const SizedBox(height: 20),
             submitButton(context),
