@@ -1,3 +1,4 @@
+import 'package:beginner_app/models/product_model.dart';
 import 'package:beginner_app/screens/details.dart';
 import 'package:beginner_app/widgets/my_radio_button.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,9 @@ class _FormScreenState extends State<FormScreen> {
 
   final _productSizesList = ["Small", "Medium", "Large", "Extra Large"];
   String? _selectedProductSize = "";
+
+  final _formKey = GlobalKey<FormState>();
+
   @override
   void dispose() {
     super.dispose();
@@ -52,91 +56,98 @@ class _FormScreenState extends State<FormScreen> {
               style: TextStyle(fontSize: 15),
             ),
             const SizedBox(height: 10),
-            ProductField(
-              productController: _productController,
-              text: "Product Name",
-              icon: Icons.verified_user_outlined,
-              iconColor: Colors.black,
-            ),
-            const SizedBox(height: 20),
-            ProductField(
-              productController: _productDesController,
-              text: "Product Description",
-              icon: Icons.description_outlined,
-              iconColor: Colors.black,
-            ),
-            const SizedBox(height: 20),
-            CheckboxListTile(
-              contentPadding: const EdgeInsets.all(0.0),
-              title: const Text("Top Product"),
-              value: _checkboxList,
-              tileColor: Colors.deepPurple.shade50,
-              shape: BeveledRectangleBorder(
-                borderRadius: BorderRadius.circular(4.0),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  ProductField(
+                    productController: _productController,
+                    text: "Product Name",
+                    icon: Icons.verified_user_outlined,
+                    iconColor: Colors.black,
+                  ),
+                  const SizedBox(height: 20),
+                  ProductField(
+                    productController: _productDesController,
+                    text: "Product Description",
+                    icon: Icons.description_outlined,
+                    iconColor: Colors.black,
+                  ),
+                  const SizedBox(height: 20),
+                  CheckboxListTile(
+                    contentPadding: const EdgeInsets.all(0.0),
+                    title: const Text("Top Product"),
+                    value: _checkboxList,
+                    tileColor: Colors.deepPurple.shade50,
+                    shape: BeveledRectangleBorder(
+                      borderRadius: BorderRadius.circular(4.0),
+                    ),
+                    onChanged: (bool? val) {
+                      setState(() {
+                        _checkboxList = val;
+                      });
+                    },
+                    controlAffinity: ListTileControlAffinity.leading,
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    children: [
+                      MyRadioButton(
+                        selectedProductType: _productTypeEnum,
+                        onChanged: (ProductTypeEnum? val) {
+                          setState(() {
+                            _productTypeEnum = val;
+                          });
+                        },
+                        title: ProductTypeEnum.Downloadable.name,
+                        value: ProductTypeEnum.Downloadable,
+                      ),
+                      const SizedBox(width: 20),
+                      MyRadioButton(
+                        selectedProductType: _productTypeEnum,
+                        onChanged: (ProductTypeEnum? val) {
+                          setState(() {
+                            _productTypeEnum = val;
+                          });
+                        },
+                        title: ProductTypeEnum.Deliverable.name,
+                        value: ProductTypeEnum.Deliverable,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  DropdownButtonFormField(
+                    value: _selectedProductSize,
+                    icon: const Icon(
+                      Icons.arrow_drop_down_circle,
+                      color: Colors.deepPurple,
+                    ),
+                    dropdownColor: Colors.deepPurple.shade50,
+                    decoration: const InputDecoration(
+                      labelText: "Product Sizes",
+                      prefixIcon: Icon(Icons.accessibility_new_rounded,
+                          color: Colors.deepPurple),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.deepPurple),
+                      ),
+                    ),
+                    items: _productSizesList
+                        .map((size) => DropdownMenuItem(
+                              value: size,
+                              child: Text(size),
+                            ))
+                        .toList(),
+                    onChanged: (val) {
+                      setState(() {
+                        _selectedProductSize = val as String;
+                      });
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                  submitButton(context),
+                ],
               ),
-              onChanged: (bool? val) {
-                setState(() {
-                  _checkboxList = val;
-                });
-              },
-              controlAffinity: ListTileControlAffinity.leading,
             ),
-            const SizedBox(height: 20),
-            Row(
-              children: [
-                MyRadioButton(
-                  selectedProductType: _productTypeEnum,
-                  onChanged: (ProductTypeEnum? val) {
-                    setState(() {
-                      _productTypeEnum = val;
-                    });
-                  },
-                  title: ProductTypeEnum.Downloadable.name,
-                  value: ProductTypeEnum.Downloadable,
-                ),
-                const SizedBox(width: 20),
-                MyRadioButton(
-                  selectedProductType: _productTypeEnum,
-                  onChanged: (ProductTypeEnum? val) {
-                    setState(() {
-                      _productTypeEnum = val;
-                    });
-                  },
-                  title: ProductTypeEnum.Deliverable.name,
-                  value: ProductTypeEnum.Deliverable,
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            DropdownButtonFormField(
-              value: _selectedProductSize,
-              icon: const Icon(
-                Icons.arrow_drop_down_circle,
-                color: Colors.deepPurple,
-              ),
-              dropdownColor: Colors.deepPurple.shade50,
-              decoration: const InputDecoration(
-                labelText: "Product Sizes",
-                prefixIcon: Icon(Icons.accessibility_new_rounded,
-                    color: Colors.deepPurple),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.deepPurple),
-                ),
-              ),
-              items: _productSizesList
-                  .map((size) => DropdownMenuItem(
-                        value: size,
-                        child: Text(size),
-                      ))
-                  .toList(),
-              onChanged: (val) {
-                setState(() {
-                  _selectedProductSize = val as String;
-                });
-              },
-            ),
-            const SizedBox(height: 20),
-            submitButton(context),
           ],
         ),
       ),
@@ -146,16 +157,21 @@ class _FormScreenState extends State<FormScreen> {
   OutlinedButton submitButton(BuildContext context) {
     return OutlinedButton(
       onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              return Details(
-                productName: _productController.text,
-              );
-            },
-          ),
-        );
+        if (_formKey.currentState!.validate()) {
+          ProductDetails productDetails = ProductDetails();
+
+          productDetails.productName = _productController.text;
+          productDetails.productDescription = _productDesController.text;
+          productDetails.isTopProduct = _checkboxList!;
+          productDetails.productType = _productTypeEnum!;
+          productDetails.productSize = _selectedProductSize!;
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Details(productDetails: productDetails),
+            ),
+          );
+        }
       },
       style: OutlinedButton.styleFrom(
         minimumSize: const Size(200, 50),
@@ -185,6 +201,7 @@ class ProductField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: (value) => value!.isEmpty ? 'Field cannot be empty' : null,
       controller: _productController,
       decoration: InputDecoration(
         border: const OutlineInputBorder(),
